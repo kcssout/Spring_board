@@ -17,7 +17,7 @@
         	<version>2.8.4</version>
        
 
-
+<html>
 1. 게시판 구성
 - 게시글 리스트, 페이징
 - 게시글 세부사항보기
@@ -74,3 +74,5 @@
 
 ![enter image description here](https://github.com/kcssout/Spring_board_image/blob/master/10.JPG?raw=true)
 ![enter image description here](https://github.com/kcssout/Spring_board_image/blob/master/09.JPG?raw=true)
+
+</html>
