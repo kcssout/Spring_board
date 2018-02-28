@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="com.sample.mappers.replyMapper">
+	<!--  댓글 목록 -->
+	<select id="list" resultType="ReplyVO">
+		Select * from reply where no = #{no} order by rno desc
+	</select>
+	
+	<!-- 댓글 입력 -->
+	<insert id="create">
+		insert into reply(no,replytext,replyer) values(#{no},#{replytext},#{replyer})	
+	</insert>
+	
+	<update id="update">
+		update reply set replytext = #{replytext} where rno= #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from reply where rno=#{rno}
+	</delete>
+	
+	<!-- 리스트페이지 -->
+	<select id="listPage" resultType="ReplyVO">
+	select * from reply where no = #{no} order by rno desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+	select count(no) from reply where no=#{no}
+	</select>
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.sample.mappers.crudMapper">
+	<select id="select" resultType="crudVO">
+		select no, title, name, date,visit from crud
+	</select>
+	
+	<select id="view" resultType="crudVO">
+		select no, name, title, content, date, visit from crud where no= #{no}
+	</select>
+		
+	<insert id="insert">
+        insert into crud(title,name,content) values(#{title},#{name},#{content})
+    </insert>
+
+	<update id="visit">
+        update crud set visit=visit+1 where no = #{no}
+    </update>
+    
+    <update id="updateCon">
+    	update crud set title = #{title} , content=#{content} where no = #{no}
+    </update>
+    
+    <delete id="delete">
+    	delete from crud where no = #{no}
+    </delete>
+    
+   <select id="listPage" resultType="crudVO">
+ <![CDATA[
+ select 
+   no, title, name, date,visit 
+ from 
+   crud 
+ where no > 0 
+ order by no desc, date desc
+ limit #{page}, 10
+ 	]]>  
+ 	</select>
+   
+  <select id="listCriteria" resultType="crudVO">
+ 	<![CDATA[
+ 	select 
+ 	 no, title, name, date,visit
+ 	from 
+  	 crud
+	 where no > 0 
+ 	order by no desc, date desc
+ 	limit #{pageStart}, #{perPageNum}
+ 	]]>  
+ </select>
+ 
+ <select id="countPaging" resultType="int">
+  <![CDATA[
+ select 
+   count(no) 
+ from 
+   crud 
+ where 
+   no > 0 
+ ]]>
+ </select>
+    
+</mapper>
