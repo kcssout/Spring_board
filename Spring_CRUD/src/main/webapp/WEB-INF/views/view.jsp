@@ -61,15 +61,15 @@ body { background: #fff; }
     vertical-align: baseline;
 }
 
-
+.btnColor{
+background-color: #f44336; border-radius: 2px; border:1px solid #f44336; color:white;
+}
 
 #modDiv {
 	width: 500;
 	height: 300;
 	background-color: white;
-	position: fixed;
-	top: 70%;
-	left: 62%;
+
 	margin-top: -50px;
 	margin-left: -150px;
 	padding: 10px;
@@ -165,12 +165,12 @@ body { background: #fff; }
 		<div>
 		<table>
 		
-		<tr><th>내용</th><td><input type='text' id='replytext'></td></tr>
-		<tr><td colspan=2 >
+		<tr><td><input type='text' size='40' style='width:100%;' id='replytext'></td></tr>
+		<tr align=right><td colspan=2 >
 		
-		<button type="button" id="replyModBtn">수정하기</button>
-		<button type="button" id="replyDelBtn">삭제하기</button>
-		<button type="button" id='closeBtn'>닫기</button>
+		<button type="button" class='btnColor' id="replyModBtn">수정하기</button>
+		<button type="button" class='btnColor' id="replyDelBtn">삭제하기</button>
+		<button type="button" class='btnColor' id='closeBtn'>닫기</button>
 		
 		</td>
 
@@ -231,9 +231,12 @@ body { background: #fff; }
 		});
 		
 		
-		
 		//수정버튼
-		$("#replies").on("click", ".replyLi button", function(){
+		$("#replies").on("click", ".replyLi button", function(e){
+
+			 var divTop = e.pageY+ 30; //상단 좌표
+			 var divLeft = e.pageX+ 195; //좌측 좌표
+			 //alert('x좌표:' +divTop + ', y좌표:' + divLeft); 좌표 찍어서 확인
 			var reply= $(this).parent();
 			var td = reply.parent().children();
 			
@@ -244,10 +247,17 @@ body { background: #fff; }
 			//var replytext =reply.parent().children().eq(1).text();
 			$(".modal-title").html(rno);
 			$("#replytext").val(replytext);
-			$("#modDiv").show("fast");
+			 $('#modDiv').css({
+			     "top": divTop
+			     ,"left": divLeft
+			     , "position": "absolute"
+			 }).show("fast");
+			//$("#modDiv").show("fast");
 			//alert(rno + " : " + replytext);
 			
 		});
+
+
 
 		
 		//수정 작업하기
@@ -333,7 +343,8 @@ body { background: #fff; }
 			
 			$(data.list).each(function(){
 				str+="<tr><th width=30%>닉네임</th><td data-rno='"+this.rno+"' class='replyLi'>"+this.replyer+"<br>("+this.mdate+")</td><tr>"
-					+"<tr><th>댓글 내용</th><td data-rno='"+this.rno+"' class='replyLi'>"+ this.replytext+"<br><button style='background-color: #f44336; border-radius: 2px; border:1px solid #f44336; color:white;'>수정/삭제</button></td></tr>"
+					+"<tr><th>댓글 내용</th><td data-rno='"+this.rno+"' class='replyLi'>"+ this.replytext+"<br><button class='btnSelect' style='background-color: #f44336; border-radius: 2px; border:1px solid #f44336; color:white;'>수정/삭제</button>"
+					+"</td></tr>"
 					+"<tr><td style='border-left:0px; border-right:0px; border-bottom:0px;' colspan=2></td></tr>";
 			});
 			
