@@ -1,14 +1,21 @@
 package com.sample.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.sample.dto.Criteria;
+import com.sample.dto.HibernateUtil;
 import com.sample.dto.crudVO;
+
+
 @Repository
 public class crudDAOImpl implements crudDAO{
 
@@ -24,11 +31,18 @@ public class crudDAOImpl implements crudDAO{
 	}
 
 	@Override
-	public void insert(crudVO vo) {
+	public void insert(crudVO vo){
 		// TODO Auto-generated method stub
-		sqlSession.insert(Namespace+".insert",vo);
-		
+		//sqlSession.insert(Namespace+".insert",vo);
+		 Session session = HibernateUtil.getSessionFactory().openSession();
+		 Transaction tx = session.beginTransaction();
+		 session.persist(vo);
+		 tx.commit();
+		 session.close();
 	}
+	
+
+
 	/*
 	@Override
 	public List<crudVO> view(int no) throws Exception {
@@ -40,8 +54,7 @@ public class crudDAOImpl implements crudDAO{
 	//selectone으로 할시
 	
 	public crudVO view(int no) throws Exception{
-		return sqlSession.selectOne(Namespace+".view",no);
-			
+		return sqlSession.selectOne(Namespace+".view",no);			
 	}	
 	@Override
 	public void visit(int no) throws Exception {
@@ -71,6 +84,7 @@ public class crudDAOImpl implements crudDAO{
 	@Override
 	public List<crudVO> listCriteria(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
+		sqlSession.update(Namespace+".renew");//댓글 숫자갱신
 		return sqlSession.selectList(Namespace + ".listCriteria", cri);
 	}
 
@@ -79,6 +93,24 @@ public class crudDAOImpl implements crudDAO{
 
 	    return sqlSession.selectOne(Namespace + ".countPaging", cri);
 	 }
+
+	@Override
+	public void updateReplyCnt(int no, int amount) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("no", no);
+		paramMap.put("amount", amount);
+		
+		sqlSession.update(Namespace + ".updateReplycnt", paramMap);
+		
+	}
+
+	@Override//댓글 숫자갱신
+	public void renew() throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(Namespace+".renew");
+	}
 
 
 

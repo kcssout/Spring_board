@@ -66,10 +66,10 @@ body { background: #fff; }
 #modDiv {
 	width: 500;
 	height: 300;
-	background-color: Wheat;
+	background-color: white;
 	position: fixed;
-	top: 50%;
-	left: 50%;
+	top: 70%;
+	left: 62%;
 	margin-top: -50px;
 	margin-left: -150px;
 	padding: 10px;
@@ -130,13 +130,14 @@ body { background: #fff; }
 		<div>
 		
 		<table width=500 border=0>
-		<tr align=right><td><button id='replyAddBtn'>댓글 추가</button>　<button id='replylist' onclick='javascript:doDisplay();'>댓글 보기</button></td></tr>
+		<tr align=right><td><button id='replyAddBtn' style='background-color: green; border-radius: 2px; border:1px solid green; color:white;'>댓글 추가</button>　
+		<button id='replylist' style='background-color: green; border-radius: 2px; border:1px solid green; color:white;' onclick='javascript:doDisplay();'>댓글 보기</button></td></tr>
 		<tr align=center>
 		<td>
 		
 		<table width=500 border=0 class='bluetop' >
 		<tr><th>닉네임</th><td><input type='text' id='newReplyWriter' name='replyer' required></td><tr>			
-		<tr><th>댓글 내용</th><td><textarea rows=5 cols=50 id='newReplyText' style="resize: none;" name='replytext' required></textarea></td>
+		<tr align=center><th>댓글 내용</th><td><textarea rows=5 cols=50 id='newReplyText' style="resize: none;" name='replytext' required></textarea></td>
 		
 		</tr>
 		</table>
@@ -162,13 +163,18 @@ body { background: #fff; }
 	<div id='modDiv' style="display: none;">
 		<div class='modal-title' style="display:none;"></div>
 		<div>
-		내용 <input type='text' id='replytext'>
+		<table>
 		
-		</div>
-		<div>
-			<button type="button" id="replyModBtn">수정하기</button>
-			<button type="button" id="replyDelBtn">삭제하기</button>
-			<button type="button" id='closeBtn'>닫기</button>
+		<tr><th>내용</th><td><input type='text' id='replytext'></td></tr>
+		<tr><td colspan=2 >
+		
+		<button type="button" id="replyModBtn">수정하기</button>
+		<button type="button" id="replyDelBtn">삭제하기</button>
+		<button type="button" id='closeBtn'>닫기</button>
+		
+		</td>
+
+		</table>	
 		</div>
 	</div>
 
@@ -187,8 +193,7 @@ body { background: #fff; }
 	        con.style.display = 'none';
 	    }
 	}
-
-
+	
 	$(document).ready(function(){
 		
 		$("#replyAddBtn").on("click",function(){
@@ -318,7 +323,9 @@ body { background: #fff; }
 	});
 	}
 	
+	
 	<!--댓글 페이지 처리-->
+	
 	function getPageList(page){
 		$.getJSON("/domain/replies/"+no+"/"+page , function(data){
 			console.log(data.list.length);
@@ -326,7 +333,7 @@ body { background: #fff; }
 			
 			$(data.list).each(function(){
 				str+="<tr><th width=30%>닉네임</th><td data-rno='"+this.rno+"' class='replyLi'>"+this.replyer+"<br>("+this.mdate+")</td><tr>"
-					+"<tr><th>작성내용</th><td data-rno='"+this.rno+"' class='replyLi'>"+ this.replytext+"<br><button>수정</button></td></tr>"
+					+"<tr><th>댓글 내용</th><td data-rno='"+this.rno+"' class='replyLi'>"+ this.replytext+"<br><button style='background-color: #f44336; border-radius: 2px; border:1px solid #f44336; color:white;'>수정/삭제</button></td></tr>"
 					+"<tr><td style='border-left:0px; border-right:0px; border-bottom:0px;' colspan=2></td></tr>";
 			});
 			

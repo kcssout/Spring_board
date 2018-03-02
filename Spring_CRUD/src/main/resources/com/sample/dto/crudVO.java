@@ -7,6 +7,7 @@ public class crudVO {
 	private String date;
 	private String content;
 	private int visit;
+	private int replycnt;
 	public int getNo() {
 		return no;
 	}
@@ -42,6 +43,12 @@ public class crudVO {
 	}
 	public void setVisit(int visit) {
 		this.visit = visit;
+	}
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
 	}
 	
 	

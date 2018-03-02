@@ -30,4 +30,13 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<!-- input hidden과 같은 방식을 REST에서도 사용가능하게끔 -->
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
 </web-app>

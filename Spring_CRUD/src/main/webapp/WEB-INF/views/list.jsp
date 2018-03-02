@@ -18,7 +18,11 @@ a:link {color:black; text-decoration: none;}
       /* -webkit-animation: blink 1.5s ease infinite; */
  }
 
+.btncolor button{
+background-color: #4CAF50;
+color: white;
 
+}
 
 body { background: #fff; }
 .table-hover > tbody > tr:hover{
@@ -70,7 +74,13 @@ body { background: #fff; }
                 <tr>
                     <td align=center>${crud.no}</td>
                     <td>                    
-                    <a class=pages href='view/${crud.no}'>${crud.title}</a>
+                    <a class=pages href='view/${crud.no}'>${crud.title}</a>　
+                    <strong>
+                    <c:if test="${crud.replycnt > 0}">
+                    <span style="color: red;">[${crud.replycnt}]
+                    </span>
+                    </c:if>
+                    </strong>
                     </td>
                     <td>${crud.name}</td>
                     <td>${crud.date}</td>
@@ -82,7 +92,7 @@ body { background: #fff; }
     </table>
 
 <table width=1000 border=0 >
- <tr style="text-align:right;"><td><Button type="button" onClick="location.href='/mycrud/insert'">글쓰기</button></td></tr>
+ <tr style="text-align:right;"><td><Button type="button" class='btncolor' onClick="location.href='/mycrud/insert'">글쓰기</button></td></tr>
  </table>
 
     <table>

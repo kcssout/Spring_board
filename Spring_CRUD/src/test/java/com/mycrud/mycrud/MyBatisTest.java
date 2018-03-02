@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
 public class MyBatisTest 
 {
+	/*
     @Inject
     private SqlSessionFactory sqlFactory;
     
@@ -32,5 +33,5 @@ public class MyBatisTest
             e.printStackTrace();
         }
     }
-    
+    */
 }

@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="view" resultType="crudVO">
-		select no, name, title, content, date, visit from crud where no= #{no}
+		select no, name, title, content, date, visit, replycnt from crud where no= #{no}
 	</select>
 		
 	<insert id="insert">
@@ -28,6 +28,15 @@
     	delete from crud where no = #{no}
     </delete>
     
+    <update id="updateReplycnt">
+    update crud set replycnt = replycnt + #{amount} where no = ${no}
+   
+    </update>
+    
+    <update id="renew">
+     update crud set replycnt = (select count(rno) from reply where no= crud.no) where no >0
+    </update>
+    
    <select id="listPage" resultType="crudVO">
  <![CDATA[
  select 
@@ -43,7 +52,7 @@
   <select id="listCriteria" resultType="crudVO">
  	<![CDATA[
  	select 
- 	 no, title, name, date,visit
+ 	 no, title, name, date,visit, replycnt
  	from 
   	 crud
 	 where no > 0 

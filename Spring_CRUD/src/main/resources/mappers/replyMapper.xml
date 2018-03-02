@@ -32,4 +32,8 @@
 	<select id="count" resultType="int">
 	select count(no) from reply where no=#{no}
 	</select>
+	
+	<select id="getNo" resultType="int">
+		select no from reply where rno= #{rno}
+	</select>
 </mapper>

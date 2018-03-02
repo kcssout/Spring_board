@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018. 3. 2. ???? 5:12:20 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.sample.dto.Criteria" table="CRITERIA">
+        <id name="page" type="int">
+            <column name="PAGE" />
+            <generator class="assigned" />
+        </id>
+        <property name="perPageNum" type="int">
+            <column name="PERPAGENUM" />
+        </property>
+        <one-to-one name="pm" class="com.sample.dto.PageMaker" access="field"></one-to-one>
+    </class>
+</hibernate-mapping>

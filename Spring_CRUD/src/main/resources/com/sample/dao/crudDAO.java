@@ -15,8 +15,11 @@ public interface crudDAO {
 	public void updateCon(crudVO vo);
 	public void delete(int no);
 	
+	public void updateReplyCnt(int no, int amount) throws Exception;//댓글수
+	public void renew() throws Exception;
 	//페이지 처리
 	public List<crudVO> listPage(int page) throws Exception;
 	public List<crudVO> listCriteria(Criteria cri) throws Exception;
 	public int countPaging(Criteria cri) throws Exception;
+
 }

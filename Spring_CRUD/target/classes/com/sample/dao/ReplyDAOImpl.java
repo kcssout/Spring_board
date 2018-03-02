@@ -44,7 +44,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	//댓글 페이징
 	@Override
 	public List<ReplyVO> listPage(int no, Criteria cri) throws Exception {
-		Map<String , Object> paramMap = new HashMap<>();
+		Map<String , Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap.put("no", no);
 		paramMap.put("cri", cri);
@@ -55,6 +55,10 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public int count(int no) throws Exception {
 	
 		return sqlSession.selectOne(namespace + ".count", no);
+	}
+	@Override
+	public int getNo(int rno) throws Exception {
+		return sqlSession.selectOne(namespace+".getNo", rno);
 	}
 	
 }

@@ -17,4 +17,7 @@ public interface ReplyDAO {
 	
 	public List<ReplyVO> listPage(int no, Criteria cri) throws Exception;
 	public int count(int no) throws Exception;//댓글수
+	
+	//댓글수 게시물 옆에 넣기
+	public int getNo(int rno) throws Exception;
 }
