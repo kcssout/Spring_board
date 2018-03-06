@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018. 3. 2. ???? 5:12:20 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.sample.dto.PageMaker" table="PAGEMAKER">
+        <id name="totalCount" type="int">
+            <column name="TOTALCOUNT" />
+            <generator class="assigned" />
+        </id>
+        <property name="startPage" type="int" access="field">
+            <column name="STARTPAGE" />
+        </property>
+        <property name="endPage" type="int" access="field">
+            <column name="ENDPAGE" />
+        </property>
+        <property name="prev" type="boolean" access="field">
+            <column name="PREV" />
+        </property>
+        <property name="next" type="boolean" access="field">
+            <column name="NEXT" />
+        </property>
+        <property name="displayPageNum" type="int" access="field">
+            <column name="DISPLAYPAGENUM" />
+        </property>
+        <one-to-one name="cri" class="com.sample.dto.Criteria"></one-to-one>
+    </class>
+</hibernate-mapping>

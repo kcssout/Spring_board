@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018. 3. 2. ???? 5:12:20 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <subclass name="com.sample.service.ReplyServiceImpl" extends="com.sample.service.ReplyService" discriminator-value="ReplyServiceImpl" lazy="false">
+        <many-to-one name="dao" class="com.sample.dao.ReplyDAO" access="field" fetch="join">
+            <column name="DAO" />
+        </many-to-one>
+        <many-to-one name="cdao" class="com.sample.dao.crudDAO" access="field" fetch="join">
+            <column name="CDAO" />
+        </many-to-one>
+    </subclass>
+</hibernate-mapping>
